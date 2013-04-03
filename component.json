@@ -1,0 +1,20 @@
+{
+  "name": "bound",
+  "repo": "fouad/bound",
+  "description": "Object data binding to DOM elements",
+  "version": "0.0.1",
+  "keywords": [
+    "bound",
+    "dom",
+    "binding",
+    "data"
+  ],
+  "dependencies": {
+    "component/query": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}

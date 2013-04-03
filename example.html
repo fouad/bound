@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>Bound Example</title>
+</head>
+<body>
+  <div class="test">
+    <div class="certain-identifier">
+      <span class="bound-id"></span>
+      <br>
+      <span class="bound-name"></span>
+      <br>
+      <span class="bound-talking"></span>
+    </div>
+  </div>
+
+  <script src="build/build.js"></script>
+  <script>
+    var bound = require('bound');
+    var model = {
+      id: 123,
+      name: {
+        value: "John",
+        handler: function(val) {
+          return val + " is smart";
+        }
+      },
+      talking: {
+        value: 17,
+        handler: function(val) {
+          return val+"%";
+        }
+      }
+    };
+    var o = bound(model, ".certain-identifier");
+    o.render();
+  </script>
+</body>
+</html>
