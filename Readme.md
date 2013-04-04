@@ -28,6 +28,7 @@ var model = {
 
 var o = bound(model, ".certain-identifier");
 
+// optional statement - can be pre-rendered on page-load (recommended!)
 o.render();
 
 setTimeout(function() {
