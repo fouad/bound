@@ -19,7 +19,7 @@
     var model = {
       id: 123,
       name: {
-        value: "John",
+        value: "Steve Jobs",
         handler: function(val) {
           return val + " is smart";
         }
@@ -33,6 +33,9 @@
     };
     var o = bound(model, ".certain-identifier");
     o.render();
+    setTimeout(function() {
+      o.set("name", "Tim Cook")
+    }, 1000);
   </script>
 </body>
 </html>
