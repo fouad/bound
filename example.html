@@ -31,10 +31,13 @@
         }
       }
     };
-    var o = bound(model, ".certain-identifier");
+    var parent = document.querySelector(".certain-identifier");
+    var o = bound(model, parent);
     o.render();
     setTimeout(function() {
-      o.set("name", "Tim Cook")
+      o.set("name", "Fouad Matin");
+      o.freeze();
+      o.set("name", "Tim Cook");
     }, 1000);
   </script>
 </body>

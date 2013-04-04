@@ -1,11 +1,9 @@
-query = require("query")
-
 class Bound
-  constructor: (obj, selector) ->
+  constructor: (obj, el) ->
     # setup defaults
     @attributes = {}
     @frozen = false
-    @selector = selector
+    @el = el
     for key of obj
       if obj[key]['value']?
         @attributes[key] = obj[key]
@@ -20,15 +18,16 @@ class Bound
     if not @attributes[key]?
       @attributes[key] =
         value: value
+    @attributes[key]['value'] = value
+    final = value
     # check if there's even a handler
     if @attributes[key]['handler']?
-      # set the value of the object to handler version of it
-      value = @attributes[key]['handler'](value)
-    @attributes[key]['value'] = value
+      # get the final handler version of the value
+      final = @attributes[key]['handler'](value)
     # update DOM element
     if not @frozen
-      $el = query "#{@selector} .bound-#{key}"
-      $el.textContent = @attributes[key]['value']
+      $el = @el.querySelector ".bound-#{key}"
+      $el.textContent = final
 
   render: ->
     for key of @attributes
@@ -38,10 +37,10 @@ class Bound
   freeze: ->
     @frozen = not @frozen
 
-bound = (obj, selector) ->
-  if not obj? or not selector?
+bound = (obj, el) ->
+  if not obj? or not el?
     throw new Error("bound - missing parameter")
 
-  new Bound obj, selector
+  new Bound obj, el
 
 module.exports = bound
